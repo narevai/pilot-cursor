@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "flightsim-governor": {
+      "url": "http://governor.broadbill-pickerel.ts.net:8000/mcp/governor"
+    },
+    "flightsim-pilot": {
+      "url": "http://governor.broadbill-pickerel.ts.net:8000/mcp/pilot"
+    }
+  }
+}

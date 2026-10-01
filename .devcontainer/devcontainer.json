@@ -1,0 +1,32 @@
+{
+  "name": "pilot-cursor",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:24-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "none",
+      "pnpmVersion": "latest"
+    }
+  },
+  "remoteUser": "node",
+  "postCreateCommand": "pnpm install",
+  "containerEnv": {
+    "FLIGHTSIM_GOVERNOR_MCP_URL": "http://governor.broadbill-pickerel.ts.net:8000/mcp/governor",
+    "FLIGHTSIM_PILOT_MCP_URL": "http://governor.broadbill-pickerel.ts.net:8000/mcp/pilot"
+  },
+  "extraHosts": [
+    "governor.broadbill-pickerel.ts.net:100.122.59.103"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": ["oxc.oxc-vscode"],
+      "settings": {
+        "editor.defaultFormatter": "oxc.oxc-vscode",
+        "editor.formatOnSave": true,
+        "editor.formatOnSaveMode": "file",
+        "editor.codeActionsOnSave": {
+          "source.fixAll.oxc": "always"
+        }
+      }
+    }
+  }
+}
