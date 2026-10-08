@@ -8,6 +8,7 @@ irl-gym starts a Cube sandbox for every run, clones this repo into it and runs t
 
 ```
 harness.json    command (placeholders {model} {title} {prompt}) and required env
+scripts/stream.mjs  runs `agent` with stream-json and prints thinking, tool calls and the answer as readable text
 prompt.md       task prompt template
 .cursor/mcp.json  MCP configuration (URL from IRL_GYM_MCP_URL)
 AGENTS.md       standing instructions for the agent
@@ -35,9 +36,9 @@ irl-gym fills the placeholders from the scenario: `{departure}`, `{destination}`
 ```
 IRL_GYM_MCP_URL=http://irl-gym.broadbill-pickerel.ts.net:8000/mcp \
 CURSOR_API_KEY=... \
-  agent -p --force --approve-mcps --trust --model <model> "$(cat prompt.md)"
+  node scripts/stream.mjs --model <model> "$(cat prompt.md)"
 ```
 
-`agent --list-models` shows the models your account can use. The agent runs with `--force` (commands without confirmation), `--approve-mcps` (the MCP server without a prompt) and `--trust` (the workspace without a prompt), which headless runs need.
+`agent --list-models` shows the models your account can use. `agent -p` alone prints only the final answer; `scripts/stream.mjs` uses `--output-format stream-json --stream-partial-output` so the terminal overlay shows progress live. The agent runs with `--force` (commands without confirmation), `--approve-mcps` (the MCP server without a prompt) and `--trust` (the workspace without a prompt), which headless runs need.
 
 The pilot server does not expose the CDU/FMC, the radios or wheel brakes, and there is no simulation control: starting, restarting or pausing the simulation is up to irl-gym.
