@@ -1,0 +1,4 @@
+{
+  "command": ["agent", "-p", "--force", "--approve-mcps", "--trust", "--model", "{model}", "{prompt}"],
+  "env": ["IRL_GYM_MCP_URL", "CURSOR_API_KEY"]
+}
