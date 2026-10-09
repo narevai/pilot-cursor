@@ -3,7 +3,7 @@
 This repo holds Cursor skills and MCP configuration for flying the flight simulator. It runs inside a Cube sandbox started by irl-gym; there is no application code.
 
 - MCP servers are configured in `.cursor/mcp.json`: `flightsim-pilot` (cockpit, MCP v2). There is no governor server: do not try to start, end, or restart the simulation or load flights; ask the user.
-- Pilot tools: readings by id (`read_group`, `read_reading`) and one `cockpit_*` tool per cockpit group with an `action` enum. They report acceptance only: always read the result. Use the raw `read_dataref` / `write_dataref` / `run_command` only when no reading or action exists.
+- Pilot tools: readings by id (`read_group`, `read_reading`) and one `cockpit_*` tool per cockpit group with an `action` enum. Each call returns `ok`, `verified`, `before`, `after` and `detail`: read `verified` and `detail`, and check the related reading when it is false. Use the raw `read_dataref` / `write_dataref` / `run_command` only when no reading or action exists.
 - Skills are in `.cursor/skills/`. Use `fly-the-airplane` first for any flying task; it points to the other skills.
 - Work as a closed loop: after every control change, read the instruments that show whether it worked. Never write altitude, position, or engagement datarefs to imitate flying.
 - You cannot restart or reload the simulation. After a flying mistake, report it to the user.
